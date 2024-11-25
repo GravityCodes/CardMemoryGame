@@ -33,3 +33,9 @@ body {
     padding: 10%;
     font-size: 2rem;
 }
+
+.heart-container {
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
