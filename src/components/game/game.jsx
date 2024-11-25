@@ -44,8 +44,6 @@ export default function Game () {
         });
     }
 
-    console.log(cards);
-
     return (
         <>
             {!cards && 

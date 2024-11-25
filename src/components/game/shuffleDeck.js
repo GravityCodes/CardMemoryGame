@@ -6,7 +6,7 @@ export default function shuffleDeck (deck, iterations) {
     }
 
     if(!visibleCards.find(cards => cards.checked == false)){
-        shuffleDeck(deck, iterations);
+        visibleCards = shuffleDeck(deck, iterations);
     }
 
     return visibleCards;
