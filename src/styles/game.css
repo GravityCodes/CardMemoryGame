@@ -18,11 +18,18 @@ body {
 }
 
 .deck-back{
-    margin-top: 40%;
+    margin-top: 10%;
 }
 
 .deck-back img{
     height: 150px;
     margin: 0 auto;
     
+}
+
+.counter {
+    display: flex;
+    justify-content: center;
+    padding: 10%;
+    font-size: 2rem;
 }

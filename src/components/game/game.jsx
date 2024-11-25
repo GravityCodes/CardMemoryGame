@@ -2,25 +2,29 @@ import { useEffect, useState } from "react";
 import fetchDeck from "./fetchDeck";
 import '../../styles/game.css'
 import regularEye from "../../assets/gif/regularEye.gif"
-import deckback from "../../assets/deck-back.png"
+import deckBack from "../../assets/deck-back.png"
+import shuffleDeck from "./shuffleDeck";
 
-
+let didInit = false;
 
 export default function Game () {
 
     const [cards, setCards] = useState(null);
-    let visibleCards = cards ? shuffleDeck(cards) : [];
+    const [count, setCount] = useState(0);
+
+    let visibleCards = cards ? shuffleDeck(cards, 4) : [];
 
     useEffect(() => {
         let  ignore = false;
-
-        fetchDeck(6).then((result) => {
+        if(!didInit){
+            fetchDeck(6).then((result) => {
                 result.cards.forEach(card => card.checked = false);
                 if(!ignore){
                     setCards(result.cards);
                 }     
-        });
-
+            });
+        }
+        
         return () => {
             ignore  = true;
         }
@@ -31,28 +35,16 @@ export default function Game () {
     function cardClickHandler(cardId) {
         cards.forEach(card => {
             if(card.code == cardId){
-                card.checked = true;
+                if(card.checked == false){
+                    card.checked = true;
+                    setCount(count => count + 1);
+                }
+                
             }
         });
     }
 
-    function shuffleDeck (deck) {
-        let visibleCards = [];
-
-        while(visibleCards.length < 4){
-            let index = Math.floor(Math.random() * deck.length);
-                if(visibleCards != []) {
-                    if(visibleCards.some(card => card.code == deck[index].code)){
-                        break;
-                    }
-                }
-            visibleCards.push(deck[index]);
-        }
-
-        return visibleCards;
-    }
-
-    console.log(visibleCards)
+    console.log(cards);
 
     return (
         <>
@@ -61,7 +53,8 @@ export default function Game () {
                     <img src={regularEye} alt="" />
                 </div>
             }
-            {visibleCards && 
+            {cards && 
+                <>
                 <div className="card-container">
                     {visibleCards.map(card => {
                         return <div className="card" key={card.code} onClick={()  =>  cardClickHandler(card.code)}>
@@ -69,10 +62,14 @@ export default function Game () {
                                 </div>
                     })}
                 </div>
+                <div className="counter">
+                    {`${count} / ${cards.length}`}
+                </div>
+                </>
             }
 
             <div className="deck-back">
-                <img src={deckback} alt="" />
+                <img src={deckBack} alt="" />
             </div>
 
         </>
