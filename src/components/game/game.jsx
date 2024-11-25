@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import fetchDeck from "./fetchDeck"
 import '../../styles/game.css'
 import regularEye from "../../assets/gif/regularEye.gif"
@@ -6,6 +6,8 @@ import deckBack from "../../assets/deck-back.png"
 import shuffleDeck from "./shuffleDeck"
 import fullHeart from "../../assets/hearts/fullHeart.png"
 import emptyHeart from "../../assets/hearts/emptyHeart.png"
+import LoseScreen from "../screens/loseScreen"
+import WinScreen from "../screens/winScreen"
 
 let didInit = false;
 
@@ -14,6 +16,7 @@ export default function Game () {
     const [cards, setCards] = useState(null);
     const [count, setCount] = useState(0);
     const [health, setHealth] = useState(3);
+    
 
     let visibleCards = cards ? shuffleDeck(cards, 4) : [];
 
@@ -85,6 +88,11 @@ export default function Game () {
                 <img src={deckBack} alt="" />
             </div>
 
+
+            {health == 0 && <LoseScreen />}
+            {cards && count == cards.length && <WinScreen />}
+               
+            
         </>
     )
 }
