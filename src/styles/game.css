@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(170, 131, 72);
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 400px;
+    width: 100vw;
+    justify-content: center;
+    margin-top: 60%;
+}
+
+.card  {
+    height: 138px;
+    width: 100px;
+}
+
+.deck-back{
+    margin-top: 40%;
+}
+
+.deck-back img{
+    height: 150px;
+    margin: 0 auto;
+    
+}
