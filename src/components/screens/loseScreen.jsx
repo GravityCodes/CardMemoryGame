@@ -1,6 +1,6 @@
 import "../../styles/endScreen.css"
 
-export default function LoseScreen (){
+export default function LoseScreen ({exitBtn, retryBtn}){
     return (
         <>
             <div className="lose-wrapper">
@@ -8,8 +8,8 @@ export default function LoseScreen (){
                 <p>You died by the eye.</p>
 
                 <div className="button-wrapper">
-                            <button type="button">Retry</button>
-                            <button type="button">Exit</button>
+                            <button type="button" onClick={retryBtn}>Retry</button>
+                            <button type="button" onClick={exitBtn}>Exit</button>
                 </div>
             </div>
 

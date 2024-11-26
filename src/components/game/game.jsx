@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import fetchDeck from "./fetchDeck"
 import '../../styles/game.css'
 import regularEye from "../../assets/gif/regularEye.gif"
@@ -11,17 +11,18 @@ import WinScreen from "../screens/winScreen"
 
 let didInit = false;
 
-export default function Game () {
+export default function Game ({exitBtn}) {
 
     const [cards, setCards] = useState(null);
     const [count, setCount] = useState(0);
     const [health, setHealth] = useState(3);
-    
+    const [playAgain, setPlayAgain] = useState(false);
 
     let visibleCards = cards ? shuffleDeck(cards, 4) : [];
 
     useEffect(() => {
         let  ignore = false;
+        console.log("hi");
         if(!didInit){
             fetchDeck(6).then((result) => {
                 result.cards.forEach(card => card.checked = false);
@@ -35,7 +36,7 @@ export default function Game () {
             ignore  = true;
         }
         
-    }, []);
+    }, [playAgain]);
     
 
     function cardClickHandler(cardId) {
@@ -50,6 +51,13 @@ export default function Game () {
                 }
             }
         });
+    }
+
+    function restartGame() {
+        setCount(0);
+        setHealth(3);
+        setCards(null);
+        setPlayAgain(!playAgain);
     }
 
     return (
@@ -89,8 +97,8 @@ export default function Game () {
             </div>
 
 
-            {health == 0 && <LoseScreen />}
-            {cards && count == cards.length && <WinScreen />}
+            {health == 0 && <LoseScreen exitBtn={exitBtn}  retryBtn={restartGame}/>}
+            {cards && count == cards.length && <WinScreen exitBtn={exitBtn}  retryBtn={restartGame} />}
                
             
         </>
