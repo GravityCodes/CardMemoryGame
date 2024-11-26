@@ -11,20 +11,20 @@ import WinScreen from "../screens/winScreen"
 
 let didInit = false;
 
-export default function Game ({exitBtn}) {
+export default function Game ({exitBtn, difficulty}) {
 
     const [cards, setCards] = useState(null);
     const [count, setCount] = useState(0);
     const [health, setHealth] = useState(3);
     const [playAgain, setPlayAgain] = useState(false);
 
-    let visibleCards = cards ? shuffleDeck(cards, 4) : [];
+    let visibleCards = cards ? shuffleDeck(cards, difficulty.cardsDisplay) : [];
 
     useEffect(() => {
         let  ignore = false;
         console.log("hi");
         if(!didInit){
-            fetchDeck(6).then((result) => {
+            fetchDeck(difficulty.cardsAmount).then((result) => {
                 result.cards.forEach(card => card.checked = false);
                 if(!ignore){
                     setCards(result.cards);
