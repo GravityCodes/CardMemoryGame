@@ -5,14 +5,22 @@
     transform: translate(-50%, -50%);
     padding: 10px;
     z-index: 1;
+    height: 300px;
+    width: 250px;
+    background-color: var(--c-2);
+    text-align: center;
 }
 
-.lose-wrapper {
-    background-color: red;
+
+
+
+.lose-wrapper h2 {
+    color: var(--c-7);
+    
 }
 
-.win-wrapper {
-    background-color: green;
+.win-wrapper h2{
+    color: rgb(74, 218, 74);
 }
 
 .lose-bg, .win-bg {
@@ -31,3 +39,6 @@
     background-color: aquamarine;
 }
 
+.lose-wrapper .button-wrapper, .win-wrapper .button-wrapper {
+    padding: 10px;
+}

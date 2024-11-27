@@ -1,3 +1,30 @@
+:root {
+  --c-1: #78290f;
+  --c-2: #894027;
+  --c-3: #9a573e;
+  --c-4: #aa6e57;
+  --c-5: #ba8571;
+  --c-6: #ef233c;
+  --c-7: #f54b4f;
+  --c-8: black;
+}
+
+
+
+@font-face {
+  font-family: 'jaroregular';
+  src: url('../assets/fonts/jaro-regular-variablefont_opsz-webfont.woff2') format('woff2'),
+       url('../assets/fonts/jaro-regular-variablefont_opsz-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 body {
-  background-color: rgb(175, 147, 103);
+  font-family: 'jaroregular';
+  background-color: var(--c-1);
+}
+
+button {
+  cursor: pointer;
 }

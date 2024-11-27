@@ -1,11 +1,27 @@
-.button-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 20%;
-    gap: 10px;
+h1 {
+    color: var(--c-6);
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0px 0px 20px var(--c-8);
+    padding-top: 30px;
 }
 
-.button-wrapper button {
-    border: none;
-    border-radius: 10px;
+.button-wrapper, .difficulty-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    
+    gap: 10px;
+
 }
+
+.button-wrapper button, .difficulty-button-wrapper button {
+    border: 2px solid var(--c-8);
+    padding: 30px;
+    background-color: var(--c-2);
+    color: var(--c-7);
+    font-size: 1.4rem;
+    width: 200px;
+    margin: 0 auto;
+}
+

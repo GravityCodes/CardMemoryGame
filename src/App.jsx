@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Game from './components/game/game.jsx'
 import './styles/App.css'
+import "./assets/sounds/bg-music.mp3"
 
 
 function App() {
@@ -28,10 +29,11 @@ function App() {
 
   return (
     <>
+
       {!playStatus && 
       
       <>
-        <h1>Card Memory Game</h1>
+        <h1>Garry's Card Game</h1>
         {
           !difficultyScreen ? 
 

@@ -1,12 +1,13 @@
-body {
-    background-color: rgb(170, 131, 72);
-}
-
-
 .game-header {
     display: flex;
-    justify-content:end;
+    justify-content:space-between;
     height: 100px;
+}
+.loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .loaded {
@@ -15,11 +16,22 @@ body {
     display: flex;
     justify-content: center;
     align-self: end;
+    padding-left: 80px;
 }
 
 .loaded img {
     padding-right: 10px;
     height: 100%;
+}
+
+.exit-btn-wrapper {
+    padding: 8px 2px;
+}
+
+.exit-btn-wrapper button {
+    border: 2px solid var(--c-8);
+    background-color: var(--c-2);
+    color: var(--c-7);
 }
 
 .heart-container {
@@ -40,13 +52,51 @@ body {
     max-height: 400px;
     width: 100vw;
     justify-content: center;
-    margin-top: 20%;
+    margin-top: 150px;
 }
 
 .card  {
     height: 138px;
     width: 100px;
+    position: relative;
+    perspective: 600px;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: transform  1s;
+    cursor: pointer;
 }
+
+.card-unflip {
+    animation: card-unflip 1s ease;
+    animation-fill-mode:forwards;
+}
+
+@keyframes card-unflip {
+    from{transform: rotateY(0)}
+    100%{ transform: rotateY(-180deg)}
+}
+
+.card-flip {
+    animation: card-flip 1s ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes card-flip {
+    100% { transform: rotateY(0deg)}
+}
+
+.front {
+    position: absolute;
+    height: 100%;
+    transform:  translateZ(1px)
+}
+
+.back {
+    position: absolute;
+    height: 100%;
+    transform:  translateZ(0px);
+}
+
 
 .deck-back{
     margin-top: 1%;
@@ -66,3 +116,19 @@ body {
 }
 
 
+@media (min-width: 700px) {
+    .exit-btn-wrapper button{
+        height: 50px;
+        width: 70px;
+        font-size: 1.2rem;
+    }
+
+    .card {
+        height: 165px;
+        width: 120px;
+    }
+
+    .heart-container {
+        height: 60px;
+    }
+}
