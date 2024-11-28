@@ -1,8 +1,13 @@
-# React + Vite
+# Garry's Card Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Alt text](./public/game-ss.png "Home Screen")
 
-Currently, two official plugins are available:
+Card Memory game. The goal of this game is not to click the same card twice. This was created as part of The Odin Project curriculum.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+official website:
+- [Garry's Card Game](https://garryscardgame.netlify.app/) 
+
+
+## In-Game screen
+
+![Alt text](./public/inPlay-ss.png "Playing Screen")
