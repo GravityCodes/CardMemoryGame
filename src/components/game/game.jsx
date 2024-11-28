@@ -11,7 +11,10 @@ import fullHeart from "../../assets/hearts/fullHeart.png"
 import emptyHeart from "../../assets/hearts/emptyHeart.png"
 import LoseScreen from "../screens/loseScreen"
 import WinScreen from "../screens/winScreen"
-
+import useSound from "use-sound"
+import btnClick from "../../assets/sounds/btn-click.mp3"
+import correctClick from "../../assets/sounds/correct.mp3"
+import wrongClick from "../../assets/sounds/wrong.mp3"
 
 let didInit = false;
 
@@ -22,7 +25,9 @@ export default function Game ({exitBtn, difficulty}) {
     const [health, setHealth] = useState(3);
     const [playAgain, setPlayAgain] = useState(false);
     const [flipCard, setFlipCard] = useState(true);
-    
+    const [playBtn] = useSound(btnClick);
+    const [playCorrect] = useSound(correctClick, { volume:0.4});
+    const [playWrong] = useSound(wrongClick);
 
     let visibleCards = cards ? shuffleDeck(cards, difficulty.cardsDisplay) : [];
     let counts = cards ? cards.filter(card => card.checked).length : 0;
@@ -57,9 +62,11 @@ export default function Game ({exitBtn, difficulty}) {
                 if(card.code == cardId){
                     if(card.checked == false){
                         card.checked = true;
+                        playCorrect();
                     }
                     else {
                         setHealth(health => health - 1);
+                        playWrong();
                     }
                 }
         });

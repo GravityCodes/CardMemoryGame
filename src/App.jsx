@@ -2,15 +2,21 @@ import { useState } from 'react'
 import Game from './components/game/game.jsx'
 import './styles/App.css'
 import "./assets/sounds/bg-music.mp3"
-
+import AudioButton from './components/musicBtn.jsx'
+import useSound from 'use-sound';
+import btnClickSound from './assets/sounds/btn-click.mp3'
+import Instructions from "./components/screens/Instructions.jsx"
 
 function App() {
   const [playStatus, setPlayStatus] = useState(false);
   const [difficultyScreen, setDifficultyScreen] = useState(false);
   const [difficulty, setDifficulty] = useState({});
+  const [play] = useSound(btnClickSound, {volume:0.5});
+  const [showInstructions, setShowInstructions] = useState(false);
 
 
   function difficultyHandler (difficulty) {
+      play();
       switch(difficulty) {
         case 'easy':
           setDifficulty({cardsAmount: 6, cardsDisplay: 4});
@@ -26,6 +32,30 @@ function App() {
       setPlayStatus(true);
   }
 
+  function playBtnClickHandler() {
+    play();  
+    setDifficultyScreen(true);  
+  }
+
+  function backBtnClickHandler() {
+    play();
+    setDifficultyScreen(false);
+  }
+
+  function exitBtnHandler () {
+    play();
+    setPlayStatus(!playStatus);
+  }
+
+  function instructionBtnHandler () {
+    play();
+    setShowInstructions(true);
+  }
+
+  function InstructionExitBtnHandler () {
+    play();
+    setShowInstructions(false);
+  }
 
   return (
     <>
@@ -38,8 +68,8 @@ function App() {
           !difficultyScreen ? 
 
           <div className="button-wrapper">
-            <button type="button" onClick={() => setDifficultyScreen(true)}>Play</button>
-            <button type='button'> How to Play</button>
+            <button type="button" onClick={playBtnClickHandler}>Play</button>
+            <button type='button' onClick={instructionBtnHandler}> How to Play</button>
           </div> :
 
           <div className='difficulty-button-wrapper'>
@@ -49,7 +79,7 @@ function App() {
               
               <button type="button" onClick={() => difficultyHandler('hard')}> Hard</button>
               
-              <button type="button" onClick={() => setDifficultyScreen(false)}>Back</button>
+              <button type="button" onClick={backBtnClickHandler}>Back</button>
           </div>
 
         }
@@ -60,8 +90,10 @@ function App() {
       </>
       }
 
-      {playStatus && <Game exitBtn={() => setPlayStatus(!playStatus)} difficulty={difficulty}/>}
+      {playStatus && <Game exitBtn={exitBtnHandler} difficulty={difficulty}/>}
+      {showInstructions && <Instructions exitBtn={InstructionExitBtnHandler} />}
 
+      <AudioButton />
     </>
   )
 
